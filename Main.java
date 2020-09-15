@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
 public class Main
 {
     public static class Node
@@ -113,6 +118,38 @@ public class Main
                 }
             }
         }
+
+
+
+        LList ReadFile(String fileName)
+        {
+            LList names = new LList();
+
+            Scanner fileReader = null;
+
+            try
+            {
+                fileReader = new Scanner(new File(fileName));
+            }
+
+            catch (FileNotFoundException fileError)
+            {
+                System.out.println(String.format("There was a problem opening file \"%s\": error = %s", fileName, fileError.getMessage()));
+
+                System.out.println("Exiting program...");
+
+                System.exit(1);
+            }
+
+            while (fileReader.hasNextLine())
+            {
+                String currentName = fileReader.nextLine().trim();
+
+                names.add(currentName);
+            }
+
+            return names;
+        }
     }
 
 
@@ -121,6 +158,13 @@ public class Main
     {
 	    LList myList = new LList();
 
+	    String file = "/home/izzy/IdeaProjects/SplitMerge/src/input.txt";
+
+	    myList = myList.ReadFile(file);
+
+        myList.traverse();
+
+	    /*
 	    myList.add("Izzy");
 	    myList.add("Seamus");
 	    myList.add("Jake");
@@ -132,6 +176,9 @@ public class Main
 
         System.out.println();
 
+        myList.delete("Ian");
+
 	    myList.traverse();
+	     */
     }
 }
