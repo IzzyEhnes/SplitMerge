@@ -169,12 +169,9 @@ public class Main
 
 
 
-        void splitMerge()
+        void splitMerge(LList myList1, LList myList2)
         {
             int splitSize = this.getListSize() / 2;
-
-            LList myList1 = new LList();
-            LList myList2 = new LList();
 
             Node current = new Node();
 
@@ -202,6 +199,27 @@ public class Main
             System.out.println("myList2: ");
             myList2.traverse();
         }
+
+
+
+        LList merge(LList list1, LList list2)
+        {
+            Node current = new Node();
+
+            LList mergedList = new LList();
+
+            for (current = list1.head; current != null; current = current.getNext())
+            {
+                mergedList.add(current.value);
+            }
+
+            for (current = list2.head; current != null; current = current.getNext())
+            {
+                mergedList.add(current.value);
+            }
+
+            return mergedList;
+        }
     }
 
 
@@ -214,6 +232,15 @@ public class Main
 
 	    myList = myList.readFile(file);
 
-        myList.splitMerge();
+	    LList list1 = new LList();
+	    LList list2 = new LList();
+
+        myList.splitMerge(list1, list2);
+
+        LList mergedList = myList.merge(list1, list2);
+
+        System.out.println();
+        System.out.println("Merged list:");
+        mergedList.traverse();
     }
 }
