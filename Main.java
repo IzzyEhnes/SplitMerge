@@ -1,8 +1,8 @@
 public class Main
 {
-    public class Node
+    public static class Node
     {
-        private int value;
+        private String value;
 
         private Node next;
 
@@ -13,21 +13,21 @@ public class Main
 
 
 
-        public Node(int inValue)
+        public Node(String inValue)
         {
             this.value = inValue;
         }
 
 
 
-        int getValue()
+        String getValue()
         {
             return value;
         }
 
 
 
-        void setValue(int inValue)
+        void setValue(String inValue)
         {
             this.value = inValue;
         }
@@ -49,11 +49,20 @@ public class Main
 
 
 
-    public class LList
+    public static class LList
     {
         Node head;
 
-        void add(int inValue)
+
+
+        public LList()
+        {
+
+        }
+
+
+
+        void add(String inValue)
         {
             Node nn = new Node(inValue);
 
@@ -76,7 +85,7 @@ public class Main
 
 
 
-        void delete(int inValue)
+        void delete(String inValue)
         {
             Node current = new Node();
 
@@ -110,6 +119,19 @@ public class Main
 
     public static void main(String[] args)
     {
-	// write your code here
+	    LList myList = new LList();
+
+	    myList.add("Izzy");
+	    myList.add("Seamus");
+	    myList.add("Jake");
+	    myList.add("Kennedy");
+
+	    myList.traverse();
+
+	    myList.delete("Seamus");
+
+        System.out.println();
+
+	    myList.traverse();
     }
 }
