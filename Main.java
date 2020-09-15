@@ -90,6 +90,22 @@ public class Main
 
 
 
+        int getListSize()
+        {
+            int size = 0;
+
+            Node current = new Node();
+
+            for (current = head; current != null; current = current.getNext())
+            {
+                size++;
+            }
+
+            return size;
+        }
+
+
+
         void delete(String inValue)
         {
             Node current = new Node();
@@ -121,7 +137,7 @@ public class Main
 
 
 
-        LList ReadFile(String fileName)
+        LList readFile(String fileName)
         {
             LList names = new LList();
 
@@ -150,6 +166,42 @@ public class Main
 
             return names;
         }
+
+
+
+        void splitMerge()
+        {
+            int splitSize = this.getListSize() / 2;
+
+            LList myList1 = new LList();
+            LList myList2 = new LList();
+
+            Node current = new Node();
+
+            int nodeCount = 0;
+            for (current = head; current != null; current = current.getNext())
+            {
+                if (nodeCount < splitSize)
+                {
+                    myList1.add(current.value);
+                }
+
+                else
+                {
+                    myList2.add(current.value);
+                }
+
+                nodeCount++;
+            }
+
+            System.out.println();
+            System.out.println("myList1: ");
+            myList1.traverse();
+
+            System.out.println();
+            System.out.println("myList2: ");
+            myList2.traverse();
+        }
     }
 
 
@@ -160,25 +212,8 @@ public class Main
 
 	    String file = "/home/izzy/IdeaProjects/SplitMerge/src/input.txt";
 
-	    myList = myList.ReadFile(file);
+	    myList = myList.readFile(file);
 
-        myList.traverse();
-
-	    /*
-	    myList.add("Izzy");
-	    myList.add("Seamus");
-	    myList.add("Jake");
-	    myList.add("Kennedy");
-
-	    myList.traverse();
-
-	    myList.delete("Seamus");
-
-        System.out.println();
-
-        myList.delete("Ian");
-
-	    myList.traverse();
-	     */
+        myList.splitMerge();
     }
 }
