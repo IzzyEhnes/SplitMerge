@@ -148,10 +148,8 @@ import java.util.Scanner;
 
             int splitSize = this.getListSize() / 2;
 
-            Node current = new Node();
-
             int nodeCount = 0;
-            for (current = head; current != null; current = current.getNext())
+            for (Node current = head; current != null; current = current.getNext())
             {
                 if (nodeCount == splitSize - 1)
                 {
@@ -165,12 +163,10 @@ import java.util.Scanner;
                 nodeCount++;
             }
 
-            System.out.println();
-            System.out.println("list1: ");
+            System.out.println("\nlist1: ");
             this.traverse();
 
-            System.out.println();
-            System.out.println("list2: ");
+            System.out.println("\nlist2: ");
             list2.traverse();
 
             return list2;
@@ -180,13 +176,13 @@ import java.util.Scanner;
 
         void merge(LList list2)
         {
-            Node current = new Node();
-
-            for (current = head; current != null; current = current.getNext())
+            for (Node current = head; current != null; current = current.getNext())
             {
                 if (current.getNext() == null)
                 {
                     current.setNext(list2.head);
+
+                    list2.head = null;
 
                     break;
                 }
@@ -235,18 +231,15 @@ import java.util.Scanner;
 
         public static void main(String[] args)
         {
-            LList list1 = new LList();
-
             String file = "/home/izzy/IdeaProjects/SplitMerge/src/input.txt";
 
-            list1 = readFile(file);
+            LList list1 = readFile(file);
 
             LList list2 = list1.split();
 
             list1.merge(list2);
 
-            System.out.println();
-            System.out.println("list1 after merge:");
+            System.out.println("\nlist1 after merge:");
             list1.traverse();
         }
 }
