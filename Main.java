@@ -219,7 +219,7 @@ import java.util.Scanner;
 
             while (fileReader.hasNextLine())
             {
-                String currentName = fileReader.nextLine().trim();
+                String currentName = fileReader.next().trim();
 
                 names.add(currentName);
             }
