@@ -1,6 +1,15 @@
+/**
+ * Author: Izzy Ehnes
+ * Class: CS130, Section 5
+ * Date completed: 17 September 2020
+ */
+
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 
 
     class Node
@@ -140,10 +149,6 @@ import java.util.Scanner;
 
         LList split()
         {
-            System.out.println();
-            System.out.println("list1 before split: ");
-            this.traverse();
-
             LList list2 = new LList();
 
             int splitSize = this.getListSize() / 2;
@@ -210,7 +215,7 @@ import java.util.Scanner;
 
             catch (FileNotFoundException fileError)
             {
-                System.out.println(String.format("There was a problem opening file \"%s\": error = %s", fileName, fileError.getMessage()));
+                System.out.println(String.format("There was a problem opening file \"%s\": \n\tError = %s", fileName, fileError.getMessage()));
 
                 System.out.println("Exiting program...");
 
@@ -235,11 +240,136 @@ import java.util.Scanner;
 
             LList list1 = readFile(file);
 
+            System.out.println("BEFORE SPLIT");
+            
+            System.out.println("\nlist1: ");
+            list1.traverse();
+
+            System.out.println("\n**********************************");
+
+            System.out.println("AFTER SPLIT");
+
             LList list2 = list1.split();
 
             list1.merge(list2);
 
-            System.out.println("\nlist1 after merge:");
+            System.out.println("\n**********************************");
+
+            System.out.println("AFTER MERGE");
+
+            System.out.println("\nlist1:");
             list1.traverse();
         }
 }
+
+
+
+/* Sample output:
+
+BEFORE SPLIT
+
+list1:
+Tate
+Kyle
+Max
+Roger
+Josh
+Cory
+Kayla
+Tristan
+Connor
+Kylie
+Payton
+David
+Sofia
+Grant
+Dhruva
+Shivani
+Ella
+Lucas
+Bradley
+Mason
+Will
+Colin
+Julie
+Quinn
+Carter
+Ian
+Kennedy
+Jake
+Seamus
+Izzy
+
+**********************************
+AFTER SPLIT
+
+list1:
+Tate
+Kyle
+Max
+Roger
+Josh
+Cory
+Kayla
+Tristan
+Connor
+Kylie
+Payton
+David
+Sofia
+Grant
+Dhruva
+
+list2:
+Shivani
+Ella
+Lucas
+Bradley
+Mason
+Will
+Colin
+Julie
+Quinn
+Carter
+Ian
+Kennedy
+Jake
+Seamus
+Izzy
+
+**********************************
+AFTER MERGE
+
+list1:
+Tate
+Kyle
+Max
+Roger
+Josh
+Cory
+Kayla
+Tristan
+Connor
+Kylie
+Payton
+David
+Sofia
+Grant
+Dhruva
+Shivani
+Ella
+Lucas
+Bradley
+Mason
+Will
+Colin
+Julie
+Quinn
+Carter
+Ian
+Kennedy
+Jake
+Seamus
+Izzy
+
+ */
