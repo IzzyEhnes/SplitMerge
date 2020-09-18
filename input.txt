@@ -1,30 +1,14 @@
-Izzy
-Seamus
-Jake
-Kennedy
-Ian
-Carter
-Quinn
-Julie
-Colin
-Will
-Mason
-Bradley
-Lucas
-Ella
-Shivani
-Dhruva
-Grant
-Sofia
-David
-Payton
-Kylie
-Connor
-Tristan
-Kayla
-Cory
-Josh
-Roger
-Max
-Kyle
-Tate
+Izzy    Seamus  Jake
+Kennedy Ian
+Carter      Quinn       Julie
+    Colin
+            Will
+    Mason Bradley Lucas
+Ella Shivani  Dhruva  Grant       Sofia
+David  Payton
+ Kylie
+                    Connor Tristan
+        Kayla   Cory
+Josh                                    Roger
+                        Max
+    Kyle Tate
