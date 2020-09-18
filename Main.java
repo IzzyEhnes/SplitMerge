@@ -52,6 +52,9 @@ import java.util.Scanner;
 
 
 
+
+
+
     class LList
     {
         private Node head;
@@ -135,8 +138,14 @@ import java.util.Scanner;
 
 
 
-        void split(LList myList1, LList myList2)
+        LList split()
         {
+            System.out.println();
+            System.out.println("list1 before split: ");
+            this.traverse();
+
+            LList list2 = new LList();
+
             int splitSize = this.getListSize() / 2;
 
             Node current = new Node();
@@ -144,52 +153,53 @@ import java.util.Scanner;
             int nodeCount = 0;
             for (current = head; current != null; current = current.getNext())
             {
-                if (nodeCount < splitSize)
+                if (nodeCount == splitSize - 1)
                 {
-                    myList1.add(current.getValue());
-                }
+                    list2.head = current.getNext();
 
-                else
-                {
-                    myList2.add(current.getValue());
+                    current.setNext(null);
+
+                    break;
                 }
 
                 nodeCount++;
             }
 
             System.out.println();
-            System.out.println("myList1: ");
-            myList1.traverse();
+            System.out.println("list1: ");
+            this.traverse();
 
             System.out.println();
-            System.out.println("myList2: ");
-            myList2.traverse();
+            System.out.println("list2: ");
+            list2.traverse();
+
+            return list2;
         }
 
 
 
-        LList merge(LList list1, LList list2)
+        void merge(LList list2)
         {
             Node current = new Node();
 
-            LList mergedList = new LList();
-
-            for (current = list1.head; current != null; current = current.getNext())
+            for (current = head; current != null; current = current.getNext())
             {
-                mergedList.add(current.getValue());
-            }
+                if (current.getNext() == null)
+                {
+                    current.setNext(list2.head);
 
-            for (current = list2.head; current != null; current = current.getNext())
-            {
-                mergedList.add(current.getValue());
+                    break;
+                }
             }
-
-            return mergedList;
         }
     }
 
 
-    class Main
+
+
+
+
+    public class Main
     {
         static LList readFile(String fileName)
         {
@@ -222,24 +232,21 @@ import java.util.Scanner;
         }
 
 
-        
+
         public static void main(String[] args)
         {
-            LList myList = new LList();
+            LList list1 = new LList();
 
             String file = "/home/izzy/IdeaProjects/SplitMerge/src/input.txt";
 
-            myList = readFile(file);
+            list1 = readFile(file);
 
-            LList list1 = new LList();
-            LList list2 = new LList();
+            LList list2 = list1.split();
 
-            myList.split(list1, list2);
-
-            LList mergedList = myList.merge(list1, list2);
+            list1.merge(list2);
 
             System.out.println();
-            System.out.println("Merged list:");
-            mergedList.traverse();
+            System.out.println("list1 after merge:");
+            list1.traverse();
         }
 }
