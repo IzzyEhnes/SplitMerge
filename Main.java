@@ -3,9 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class Main
-{
-    public static class Node
+    class Node
     {
         private String value;
 
@@ -54,9 +52,9 @@ public class Main
 
 
 
-    public static class LList
+    class LList
     {
-        Node head;
+        private Node head;
 
 
 
@@ -112,24 +110,24 @@ public class Main
 
             if (head != null)
             {
-                if (head.value == inValue)
+                if (head.getValue() == inValue)
                 {
-                    head = head.next;
+                    head = head.getNext();
                 }
 
                 else
                 {
                     current = head;
 
-                    while (current.next != null &&
-                            current.next.value != inValue)
+                    while (current.getNext() != null &&
+                            current.getNext().getValue() != inValue)
                     {
-                        current = current.next;
+                        current = current.getNext();
                     }
 
-                    if (current.next != null)
+                    if (current.getNext() != null)
                     {
-                        current.next = current.next.next;
+                        current.setNext(current.getNext().getNext());
                     }
                 }
             }
@@ -137,7 +135,63 @@ public class Main
 
 
 
-        LList readFile(String fileName)
+        void split(LList myList1, LList myList2)
+        {
+            int splitSize = this.getListSize() / 2;
+
+            Node current = new Node();
+
+            int nodeCount = 0;
+            for (current = head; current != null; current = current.getNext())
+            {
+                if (nodeCount < splitSize)
+                {
+                    myList1.add(current.getValue());
+                }
+
+                else
+                {
+                    myList2.add(current.getValue());
+                }
+
+                nodeCount++;
+            }
+
+            System.out.println();
+            System.out.println("myList1: ");
+            myList1.traverse();
+
+            System.out.println();
+            System.out.println("myList2: ");
+            myList2.traverse();
+        }
+
+
+
+        LList merge(LList list1, LList list2)
+        {
+            Node current = new Node();
+
+            LList mergedList = new LList();
+
+            for (current = list1.head; current != null; current = current.getNext())
+            {
+                mergedList.add(current.getValue());
+            }
+
+            for (current = list2.head; current != null; current = current.getNext())
+            {
+                mergedList.add(current.getValue());
+            }
+
+            return mergedList;
+        }
+    }
+
+
+    class Main
+    {
+        static LList readFile(String fileName)
         {
             LList names = new LList();
 
@@ -168,79 +222,24 @@ public class Main
         }
 
 
-
-        void splitMerge(LList myList1, LList myList2)
+        
+        public static void main(String[] args)
         {
-            int splitSize = this.getListSize() / 2;
+            LList myList = new LList();
 
-            Node current = new Node();
+            String file = "/home/izzy/IdeaProjects/SplitMerge/src/input.txt";
 
-            int nodeCount = 0;
-            for (current = head; current != null; current = current.getNext())
-            {
-                if (nodeCount < splitSize)
-                {
-                    myList1.add(current.value);
-                }
+            myList = readFile(file);
 
-                else
-                {
-                    myList2.add(current.value);
-                }
+            LList list1 = new LList();
+            LList list2 = new LList();
 
-                nodeCount++;
-            }
+            myList.split(list1, list2);
+
+            LList mergedList = myList.merge(list1, list2);
 
             System.out.println();
-            System.out.println("myList1: ");
-            myList1.traverse();
-
-            System.out.println();
-            System.out.println("myList2: ");
-            myList2.traverse();
+            System.out.println("Merged list:");
+            mergedList.traverse();
         }
-
-
-
-        LList merge(LList list1, LList list2)
-        {
-            Node current = new Node();
-
-            LList mergedList = new LList();
-
-            for (current = list1.head; current != null; current = current.getNext())
-            {
-                mergedList.add(current.value);
-            }
-
-            for (current = list2.head; current != null; current = current.getNext())
-            {
-                mergedList.add(current.value);
-            }
-
-            return mergedList;
-        }
-    }
-
-
-
-    public static void main(String[] args)
-    {
-	    LList myList = new LList();
-
-	    String file = "/home/izzy/IdeaProjects/SplitMerge/src/input.txt";
-
-	    myList = myList.readFile(file);
-
-	    LList list1 = new LList();
-	    LList list2 = new LList();
-
-        myList.splitMerge(list1, list2);
-
-        LList mergedList = myList.merge(list1, list2);
-
-        System.out.println();
-        System.out.println("Merged list:");
-        mergedList.traverse();
-    }
 }
